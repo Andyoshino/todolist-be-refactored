@@ -5,6 +5,7 @@ import com.nogroup.todolistbe.exception.ErrorCode;
 import com.nogroup.todolistbe.repository.TaskRepository;
 import com.nogroup.todolistbe.repository.TaskRepositoryCustom;
 import com.nogroup.todolistbe.web.model.request.AddTaskWebRequest;
+import com.nogroup.todolistbe.web.model.request.EditTaskWebRequest;
 import com.nogroup.todolistbe.web.model.response.GetTaskListWebResponse;
 import com.nogroup.todolistbe.entity.Task;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,14 @@ public class TaskServiceImpl implements TaskService {
         .findById(id)
         .switchIfEmpty(Mono.defer(() -> Mono.error(new CustomException(ErrorCode.TASK_NOT_FOUND))))
         .flatMap(task -> taskRepository.deleteById(id).thenReturn(task));
+  }
+
+  @Override
+  public Mono<Task> editTask(String id, EditTaskWebRequest editTaskWebRequest) {
+    Task task = new Task();
+    BeanUtils.copyProperties(editTaskWebRequest, task);
+    task.setId(id);
+    return taskRepository.save(task);
   }
 
 }
