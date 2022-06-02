@@ -1,9 +1,12 @@
 package com.nogroup.todolistbe.service.impl;
 
+import com.nogroup.todolistbe.repository.TaskRepository;
 import com.nogroup.todolistbe.repository.TaskRepositoryCustom;
+import com.nogroup.todolistbe.web.model.request.AddTaskWebRequest;
 import com.nogroup.todolistbe.web.model.response.GetTaskListWebResponse;
 import com.nogroup.todolistbe.entity.Task;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import com.nogroup.todolistbe.service.TaskService;
@@ -16,9 +19,10 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
   private final TaskRepositoryCustom taskRepositoryCustom;
+  private final TaskRepository taskRepository;
 
   @Override
-  public Mono<GetTaskListWebResponse> getTaskList(GetTaskListWebRequest request) {
+  public Mono<GetTaskListWebResponse> getTaskListPaged(GetTaskListWebRequest request) {
     return taskRepositoryCustom.getTaskPaged(request)
         .collectList()
         .map(this::constructGetTaskListWebResponse);
@@ -26,6 +30,13 @@ public class TaskServiceImpl implements TaskService {
 
   private GetTaskListWebResponse constructGetTaskListWebResponse(List<Task> taskList) {
     return GetTaskListWebResponse.builder().tasks(taskList).build();
+  }
+
+  @Override
+  public Mono<Task> addTask(AddTaskWebRequest addTaskWebRequest) {
+    Task task = new Task();
+    BeanUtils.copyProperties(addTaskWebRequest, task);
+    return taskRepository.save(task);
   }
 
 }
