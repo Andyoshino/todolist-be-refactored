@@ -1,7 +1,7 @@
-package entity;
+package com.nogroup.todolistbe.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import entity.constant.CollectionName;
+import com.nogroup.todolistbe.entity.constant.CollectionName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

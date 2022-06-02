@@ -1,4 +1,4 @@
-package model.exception;
+package com.nogroup.todolistbe.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

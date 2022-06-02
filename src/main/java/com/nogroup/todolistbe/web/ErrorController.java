@@ -1,7 +1,7 @@
-package web;
+package com.nogroup.todolistbe.web;
 
-import entity.Response;
-import model.exception.CustomException;
+import com.nogroup.todolistbe.entity.Response;
+import com.nogroup.todolistbe.exception.CustomException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

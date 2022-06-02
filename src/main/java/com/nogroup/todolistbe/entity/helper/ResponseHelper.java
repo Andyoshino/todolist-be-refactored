@@ -1,6 +1,6 @@
-package entity.helper;
+package com.nogroup.todolistbe.entity.helper;
 
-import entity.Response;
+import com.nogroup.todolistbe.entity.Response;
 import org.springframework.http.HttpStatus;
 
 public class ResponseHelper {
