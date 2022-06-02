@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +12,6 @@ import java.util.List;
 public class Response<T> {
   private Integer code;
   private String status;
-  private List<String> errors;
+  private String error;
   private T data;
 }

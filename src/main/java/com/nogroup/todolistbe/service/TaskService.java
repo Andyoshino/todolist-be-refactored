@@ -10,4 +10,6 @@ public interface TaskService {
   Mono<GetTaskListWebResponse> getTaskListPaged(GetTaskListWebRequest request);
 
   Mono<Task> addTask(AddTaskWebRequest addTaskWebRequest);
+
+  Mono<Task> deleteTask(String id);
 }

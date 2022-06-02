@@ -1,5 +1,7 @@
 package com.nogroup.todolistbe.service.impl;
 
+import com.nogroup.todolistbe.exception.CustomException;
+import com.nogroup.todolistbe.exception.ErrorCode;
 import com.nogroup.todolistbe.repository.TaskRepository;
 import com.nogroup.todolistbe.repository.TaskRepositoryCustom;
 import com.nogroup.todolistbe.web.model.request.AddTaskWebRequest;
@@ -37,6 +39,14 @@ public class TaskServiceImpl implements TaskService {
     Task task = new Task();
     BeanUtils.copyProperties(addTaskWebRequest, task);
     return taskRepository.save(task);
+  }
+
+  @Override
+  public Mono<Task> deleteTask(String id) {
+    return taskRepository
+        .findById(id)
+        .switchIfEmpty(Mono.defer(() -> Mono.error(new CustomException(ErrorCode.TASK_NOT_FOUND))))
+        .flatMap(task -> taskRepository.deleteById(id).thenReturn(task));
   }
 
 }

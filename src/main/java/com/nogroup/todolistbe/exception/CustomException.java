@@ -1,18 +1,18 @@
 package com.nogroup.todolistbe.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-import java.util.List;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter
 public class CustomException extends RuntimeException {
   private Integer code;
   private String status;
-  private List<String> errors;
+  private String error;
+  private ErrorCode errorCode;
+
+  public CustomException(ErrorCode errorCode) {
+    this.errorCode = errorCode;
+    this.code = errorCode.getHttpStatus().value();
+    this.status = errorCode.getHttpStatus().name();
+    this.error = errorCode.getErrorMessage();
+  }
 }
