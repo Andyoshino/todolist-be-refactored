@@ -22,6 +22,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
+
 @RestController
 @RequestMapping("/api/task")
 @AllArgsConstructor
@@ -51,7 +52,7 @@ public class TaskController {
   }
 
   @RequestMapping(method = {RequestMethod.PATCH, RequestMethod.PUT})
-  public Mono<Response<Task>> editTask(@RequestParam @Valid @NotEmpty String id, @RequestBody @Valid
+  public Mono<Response<Task>> editTask(@RequestParam @Valid @NotEmpty(message = "Task id can't be empty") String id, @RequestBody @Valid
       EditTaskWebRequest editTaskWebRequest) {
     return taskService
         .editTask(id, editTaskWebRequest)

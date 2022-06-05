@@ -7,12 +7,12 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class GetTaskListWebRequest {
-  @NotNull
-  @Min(1)
+  @NotNull(message = "Page size can't be null")
+  @Min(value = 1, message = "Page size value is invalid")
   private Integer pageSize;
 
-  @NotNull
-  @Min(1)
+  @NotNull(message = "Page number can't be null")
+  @Min(value = 1, message = "Page number is invalid")
   private Integer page;
 
   private String filter;

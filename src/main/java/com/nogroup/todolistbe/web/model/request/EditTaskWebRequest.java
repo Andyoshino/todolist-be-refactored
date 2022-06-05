@@ -9,11 +9,11 @@ import java.util.Date;
 
 @Data
 public class EditTaskWebRequest {
-  @NotEmpty
+  @NotEmpty(message = "Task can't be empty")
   private String task;
-  @NotEmpty
+  @NotEmpty(message = "Task's detail can't be empty")
   private String detail;
-  @NotNull
+  @NotNull(message = "Task's schedule can't be empty")
   @JsonFormat(pattern = "yyyy-MM-dd")
   private Date schedule;
 }
