@@ -2,7 +2,7 @@ package com.nogroup.todolistbe.web;
 
 import com.nogroup.todolistbe.entity.Response;
 import com.nogroup.todolistbe.entity.Task;
-import com.nogroup.todolistbe.entity.helper.ResponseHelper;
+import com.nogroup.todolistbe.helper.ResponseHelper;
 import com.nogroup.todolistbe.service.TaskService;
 import com.nogroup.todolistbe.web.model.request.AddTaskWebRequest;
 import com.nogroup.todolistbe.web.model.request.EditTaskWebRequest;

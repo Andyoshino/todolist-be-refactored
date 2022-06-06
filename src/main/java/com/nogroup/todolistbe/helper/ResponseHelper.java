@@ -1,4 +1,4 @@
-package com.nogroup.todolistbe.entity.helper;
+package com.nogroup.todolistbe.helper;
 
 import com.nogroup.todolistbe.entity.Response;
 import org.springframework.http.HttpStatus;

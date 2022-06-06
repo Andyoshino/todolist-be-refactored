@@ -1,6 +1,7 @@
 package com.nogroup.todolistbe.web.model.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
+@Builder
 public class EditTaskWebRequest {
   @NotEmpty(message = "Task can't be empty")
   private String task;

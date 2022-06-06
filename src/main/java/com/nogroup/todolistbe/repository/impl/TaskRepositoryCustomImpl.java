@@ -24,18 +24,16 @@ public class TaskRepositoryCustomImpl implements TaskRepositoryCustom {
     Sort.Direction sortDirection = Sort.Direction.ASC;
     if (StringUtils.hasText(request.getSortDir()) && request.getSortDir().equals("DESC"))
       sortDirection = Sort.Direction.DESC;
-
     String filter = "";
     if (StringUtils.hasText(request.getFilter()))
       filter = request.getFilter();
-
     String sortBy = "id";
     if (StringUtils.hasText(request.getSortBy()))
       sortBy = request.getSortBy();
 
     Query query = new Query();
     query.addCriteria(Criteria.where("task").regex(".*" + filter + ".*", "i"))
-        .with(PageRequest.of(request.getPage(), request.getPageSize()))
+        .with(PageRequest.of(request.getPage()-1, request.getPageSize()))
         .with(Sort.by(sortDirection, sortBy));
 
     return reactiveMongoTemplate.find(query, Task.class);
