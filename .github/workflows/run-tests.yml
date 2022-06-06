@@ -14,9 +14,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Run mongoDB
+      - name: Run MongoDB
         run: sudo docker run -d -p 27017:27017 mongo:latest
-      - name: Maven Package
+      - name: Build Code
         run: mvn -B clean package -DskipTests
-      - name: Maven Verify
+      - name: Run Tests
         run: mvn -B clean verify
