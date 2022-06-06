@@ -153,8 +153,6 @@ public class TaskIntegrationTest extends AbstractIntegrationTest {
 
           Task editedTask = taskRepository.findById("123456").block();
           Assertions.assertEquals(editedTask, response.getData());
-
-          Assertions.assertTrue(false);
         }));
   }
 
