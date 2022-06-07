@@ -20,6 +20,14 @@ public class JsonHelper {
     }
   }
 
+  public <T> T fromJson(String json, Class<T> tClass) throws JsonProcessingException {
+    try {
+      return this.objectMapper.readValue(json, tClass);
+    } catch (Throwable err) {
+      throw err;
+    }
+  }
+
   public <T> String toJson(T object) throws JsonProcessingException {
     try {
       return objectMapper.writeValueAsString(object);

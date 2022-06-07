@@ -10,9 +10,9 @@ import reactor.core.publisher.Mono;
 public interface TaskService {
   Mono<GetTaskListWebResponse> getTaskListPaged(GetTaskListWebRequest request);
 
-  Mono<Task> addTask(AddTaskWebRequest addTaskWebRequest);
+  Mono<Task> addTask(AddTaskWebRequest addTaskWebRequest, String performer);
 
-  Mono<Task> deleteTask(String id);
+  Mono<Task> deleteTask(String id, String performer);
 
-  Mono<Task> editTask(String id, EditTaskWebRequest editTaskWebRequest);
+  Mono<Task> editTask(String id, EditTaskWebRequest editTaskWebRequest, String performer);
 }
